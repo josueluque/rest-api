@@ -1,25 +1,29 @@
 from fastapi import APIRouter
-from src.db.db import conn
-from src.models.userModel import users
 from src.schemas.userSchema import User
-from cryptography.fernet import Fernet
+from src.services import userService
 
 
 user = APIRouter()
 
-key = Fernet.generate_key()
-f = Fernet(key)
-
+#TODO Agregar Exceptions y Status code
+#TODO Seperar funciones en user service y agregar docstrings
 
 @user.get("/users")
 def get_users():
-    return conn.execute(users.select()).fetchall()
+    return userService.all_users()
 
 @user.post("/user")
 def create_user(user: User):
-    new_user = {"name": user.name, "email": user.email}
-    new_user["password"] = bytes.decode(f.encrypt(user.password.encode("utf-8")))
-    #print(new_user)
+    return userService.new_user(user)
 
-    result = conn.execute(users.insert().values(new_user))
-    return conn.execute(users.select().where(users.c.id == result.lastrowid)).first()
+@user.get("/users/{id}")
+def get_user(id: str):
+    return userService.find_by_id(id)
+
+@user.put("/users/{id}")
+def update_user(user: User, id: str):
+    return "user edited"
+
+@user.delete("/users/{id}")
+def delete_user(id: str):
+    return "user deleted"
