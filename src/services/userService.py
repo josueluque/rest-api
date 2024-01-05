@@ -3,7 +3,6 @@ from src.models.userModel import users
 from cryptography.fernet import Fernet
 
 
-
 key = Fernet.generate_key()
 f = Fernet(key)
 
@@ -34,8 +33,6 @@ def update_by_id(id, user):
 
 
 def delete_by_id(id):
-    #result = conn.execute(users.select().where(users.c.id == id)).first
-
     query = users.delete().where(users.c.id == id)
     return conn.execute(query)
 
