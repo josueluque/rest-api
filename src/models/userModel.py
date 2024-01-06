@@ -7,6 +7,6 @@ users = Table("users", meta,
             Column("name", String(50)),
             Column("email", String(70)),
             Column("password", String(125)),
-            Column("estado", Boolean(), default=False))
+            Column("state", Boolean(), default=False))
 
 meta.create_all(engine) # Creará todas las tablas definidas en el objeto meta en la base de datos especificada por el objeto engine.

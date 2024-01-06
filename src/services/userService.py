@@ -11,14 +11,14 @@ def all_users():
     return conn.execute(query).fetchall()
 
 def add_new_user(user):
-    new_user = {"name": user.name, "email": user.email, "estado": user.estado}
+    new_user = {"name": user.name, "email": user.email, "state": user.state}
     new_user["password"] = f.encrypt(user.password.encode("utf-8"))
 
     query = users.insert().values(new_user)
     result = conn.execute(query)
 
-    query_rerturn = users.select().where(users.c.id == result.lastrowid)
-    return conn.execute(query_rerturn).first()
+    query_return = users.select().where(users.c.id == result.lastrowid)
+    return conn.execute(query_return).first()   
 
 def find_by_id(id):
     query = users.select().where(users.c.id == id)
