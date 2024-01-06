@@ -25,33 +25,33 @@ def create_user(user: User):
 
 
 @user.get("/user/getUser/{userId}", response_model=Union[User, str], tags=["user"])
-def get_user(id: str):
-    existing_user = userService.find_by_id(id)
+def get_user(userId: str):
+    existing_user = userService.find_by_id(userId)
     if existing_user:
         return existing_user
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {id}")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {userId}")
 
 
 @user.put("/user/editUser/{userId}", response_model=Union[User, str], tags=["user"])
-def update_user(id: str, user: User):
-    existing_user = userService.find_by_id(id)
+def update_user(userId: str, user: User):
+    existing_user = userService.find_by_id(userId)
     if (existing_user):
         try:
-            return userService.update_by_id(id, user)
+            return userService.update_by_id(userId, user)
         except Exception as e:
-            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to update user, ID: {id}. ERROR: {str(e)}")
+            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to update user, ID: {userId}. ERROR: {str(e)}")
 
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {id}")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {userId}")
 
 
 @user.delete("/user/removeUser/{userId}", response_model=str, tags=["user"])
-def delete_user(id: str):
-    existing_user = userService.find_by_id(id)
+def delete_user(userId: str):
+    existing_user = userService.find_by_id(userId)
     if (existing_user):
         try:
-            userService.delete_by_id(id)
-            return f"Successfully deleted, user ID: {id}"
+            userService.delete_by_id(userId)
+            return f"Successfully deleted, user ID: {userId}"
         except Exception as e:
-            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to delete user, ID: {id}. ERROR: {str(e)}")
+            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to delete user, ID: {userId}. ERROR: {str(e)}")
 
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {id}")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {userId}")
