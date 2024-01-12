@@ -44,7 +44,7 @@ def update_user(userId: str, user: User):
     
     existing_name = userService.find_by_user_name(user.name)
     if (existing_name):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User could not be created. Existing user: {user.name}")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User could not be updated. Existing user: {user.name}")
 
     try:
         return userService.update_by_id(userId, user)
