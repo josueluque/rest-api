@@ -16,7 +16,7 @@ pip --version
 create database restapidb;
 ```
 
-#### Clone project folder and then virtual environment with [Anaconda](https://www.anaconda.com/download)
+#### Clone project folder and then create virtual environment with [Anaconda](https://www.anaconda.com/download)
 
 ```
 # Being located in the cloned project folder:
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 ## Start app 🚀
 
-#### Start the application with the next command and then you can use to the integrated [FastAPI swagger](https://fastapi.tiangolo.com/features/), Postman, or another
+#### Start the application with the next command and then you can use to the integrated [FastAPI swagger](https://fastapi.tiangolo.com/features/), Postman, or another to use the REST API
 
 ```
 python app.py
