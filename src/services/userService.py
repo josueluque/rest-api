@@ -2,7 +2,6 @@ from src.db.db import conn
 from src.models.userModel import users
 from cryptography.fernet import Fernet
 from sqlalchemy.exc import SQLAlchemyError
-
 import re
 
 
