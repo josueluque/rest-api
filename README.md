@@ -10,7 +10,7 @@
 pip --version
 ```
 
-#### Create the database in MySQL
+#### Create the database in MySQL in case you do not use docker
 
 ```
 create database restapidb;
@@ -30,6 +30,14 @@ conda create --name NAME-VIRTUAL-ENVIROMENT python=3
 
 ```
 pip install -r requirements.txt
+```
+
+## Docker 🐳
+
+#### Create the containers (services) that are described in the docker-compose file.
+
+```
+docker compose up
 ```
 
 ## Start app 🚀
