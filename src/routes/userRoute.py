@@ -1,4 +1,6 @@
-from fastapi import APIRouter, status, HTTPException
+from fastapi import APIRouter, HTTPException, Path
+from starlette import status
+from fastapi.responses import JSONResponse
 from src.schemas.userSchema import User
 from src.services import userService
 from typing import Union
@@ -28,7 +30,7 @@ def create_user(user: User):
 
 
 @user.get("/user/getUser/{userId}", response_model=Union[User, str], tags=["user"])
-def get_user(userId: str):
+def get_user(userId: int = Path(ge=1, le=2000)):    #Validacion de parametros -> ge: mayor o igual que, le: menor o igual que
     existing_user = userService.find_by_user_id(userId)
     if (not existing_user):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {userId}")
@@ -37,7 +39,7 @@ def get_user(userId: str):
 
 
 @user.put("/user/editUser/{userId}", response_model=Union[User, str], tags=["user"])
-def update_user(userId: str, user: User):
+def update_user(user: User, userId: int = Path(ge=1, le=2000)):
     existing_user = userService.find_by_user_id(userId)
     if (not existing_user):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {userId}")
@@ -53,14 +55,14 @@ def update_user(userId: str, user: User):
 
 
 @user.delete("/user/removeUser/{userId}", response_model=str, tags=["user"])
-def delete_user(userId: str):
+def delete_user(userId: int = Path(ge=1, le=2000)):
     existing_user = userService.find_by_user_id(userId)
     if (not existing_user):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"User not found, ID: {userId}")
     
     try:    
         userService.delete_by_id(userId)
-        return f"Successfully deleted, user ID: {userId}"
+        return JSONResponse(content=f"Successfully deleted, user ID: {userId}", status_code=status.HTTP_202_ACCEPTED)
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to delete user, ID: {userId}. ERROR: {str(e)}")
 
