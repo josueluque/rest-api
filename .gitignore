@@ -1,2 +1,4 @@
 # Ignorar directorios generados por el intérprete de Python
 __pycache__
+
+.env
