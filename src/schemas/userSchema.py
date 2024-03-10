@@ -1,8 +1,7 @@
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 class User(BaseModel):
-    id: Optional[int] = None
     """
     - Validaciones con Field - 
     -> max_length = cantidad maxima de caracteres (int)
@@ -11,8 +10,9 @@ class User(BaseModel):
 
     name: str = Field(default="My name", min_length=2, max_length=15) 
     """
+    id: Optional[int] = None
     name: str = Field(max_length=15)    
-    email: str
+    email: EmailStr
     password: str
     state: Optional[bool] = False
 

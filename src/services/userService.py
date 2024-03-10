@@ -2,7 +2,6 @@ from src.db.db import conn
 from src.models.userModel import users
 from cryptography.fernet import Fernet
 from sqlalchemy.exc import SQLAlchemyError
-import re
 
 
 key = Fernet.generate_key()
@@ -37,10 +36,6 @@ def add_new_user(user):
         ValueError: If there is an issue with the execution of the query or an error is encountered during validation.
     """
     try:
-        valid_email = validate_email(user.email)
-        if (not valid_email):
-            raise TypeError("Invalid email format")
-
         encrypt_password = f.encrypt(user.password.encode("utf-8"))
         new_user = {"name": user.name, "email": user.email, "password": encrypt_password, "state": user.state}
 
@@ -65,11 +60,7 @@ def update_by_id(id, user):
     Returns:
         dict: A dictionary with the updated user information.
     """
-    try:
-        valid_email = validate_email(user.email)
-        if (not valid_email):
-            raise TypeError("Invalid email format")
-        
+    try:        
         encrypt_password  = f.encrypt(user.password.encode("utf-8"))
         query = users.update().values(name = user.name, email = user.email, password = encrypt_password).where(users.c.id == id)
         conn.execute(query)
@@ -119,17 +110,3 @@ def find_by_user_name(name):
     """
     query = users.select().where(users.c.name == name)
     return conn.execute(query).first()
-
-
-def validate_email(email):
-    """Validates an email address.
-
-    Args:
-        email (str): The email address to be validated.
-
-    Returns:
-        bool: True if the email is valid, False otherwise.
-    """
-    if not isinstance(email, str) or not re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$", email):
-        return False
-    return True    
