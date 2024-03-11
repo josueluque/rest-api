@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from src.routes.userRoute import user
 from src.routes.authRoute import auth
+from src.middlewares.errorHandler import ErrorHandler
 import uvicorn
 
 # Creación de la aplicación FastAPI
@@ -9,6 +10,9 @@ app = FastAPI(
     description="REST API using Python, FastAPI, MySQL and SQLAlchemy ",
     version="0.1.0"
 )
+
+# Incorporando middlewares
+app.add_middleware(ErrorHandler)
 
 # Inclusión de rutas adicionales desde el conjunto de rutas 'user'
 app.include_router(user)

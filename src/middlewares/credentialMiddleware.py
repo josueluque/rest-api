@@ -6,7 +6,7 @@ from starlette import status
 
 
 class JWTBearer(HTTPBearer):
-    async def __call__(self, request: Request):
+    async def __call__(self, request: Request): # Se utiliza la funcion __call__ para acceder a la peticion del usuario
         auth = await super().__call__(request)  # Llama al metodo __call__ de la clase superior HTTPBearer, y me devuelve los datos de las credeciales del usuario
         data = validateToken(auth.credentials)  # Desencripta y devuelve los datos en un diccionario
         print(data)
