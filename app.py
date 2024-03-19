@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from src.routes.userRoute import user
-from src.routes.authRoute import auth
-from src.middlewares.errorHandler import ErrorHandler
+from src.routes.user_route import user
+from src.routes.auth_route import auth
+from src.middlewares.error_handler import ErrorHandler
 import uvicorn
 
 # Creación de la aplicación FastAPI
