@@ -1,6 +1,6 @@
 from sqlalchemy import Table, Column
 from sqlalchemy.sql.sqltypes import Integer, String, Boolean
-from src.db.db import meta, engine
+from src.config.db import meta, engine
 
 users = Table("users", meta, 
             Column("id", Integer(), primary_key=True), 

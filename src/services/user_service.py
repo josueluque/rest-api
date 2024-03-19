@@ -1,5 +1,5 @@
-from src.db.db import conn
-from src.models.userModel import users
+from src.config.db import conn
+from src.models.user_model import users
 from cryptography.fernet import Fernet
 from sqlalchemy.exc import SQLAlchemyError
 
