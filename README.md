@@ -1,11 +1,11 @@
 <div align="center">
 
 <h3>
- User system - API
+ User System - API
 </h3>
 
-![Python Badge](https://img.shields.io/badge/python-090a15?logo=python)
-![FastAPI Badge](https://img.shields.io/badge/fastapi-000?logo=fastapi)
+![Python Badge](https://img.shields.io/badge/Python-090a15?logo=python)
+![FastAPI Badge](https://img.shields.io/badge/FastAPI-000?logo=fastapi)
 ![GitHub issues](https://img.shields.io/github/issues/josueluque/rest-api)
 ![GitHub forks](https://img.shields.io/github/forks/josueluque/rest-api)
 ![GitHub PRs](https://img.shields.io/github/issues-pr/josueluque/rest-api)
@@ -59,7 +59,7 @@ docker compose up -d
 <details>
 	<summary>Enviroment variables</summary>
 	
-- Data base MySQL:
+- MySQL Database:
 	```py
 	MYSQL_HOST= localhost
     MYSQL_USER= root
