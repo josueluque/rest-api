@@ -1,6 +1,20 @@
-# REST API system users.
+<div align="center">
 
-#### REST API developed with FastAPI, MySQL, SQLAchemy and ASGI Web Server: uvicorn
+<h3>
+ User system - API
+</h3>
+
+![Python Badge](https://img.shields.io/badge/python-090a15?logo=python)
+![FastAPI Badge](https://img.shields.io/badge/fastapi-000?logo=fastapi)
+![GitHub issues](https://img.shields.io/github/issues/josueluque/rest-api)
+![GitHub forks](https://img.shields.io/github/forks/josueluque/rest-api)
+![GitHub PRs](https://img.shields.io/github/issues-pr/josueluque/rest-api)
+
+</div>
+
+## About the system
+
+#### User system API developed with FastAPI, MySQL, SQLAchemy and ASGI Web Server: uvicorn
 
 ## Pre-requisities 📋
 
@@ -16,29 +30,57 @@ pip --version
 create database restapidb;
 ```
 
-#### Clone project folder and then create virtual environment with [Anaconda](https://www.anaconda.com/download)
-
-```
-# Being located in the cloned project folder:
-
-conda create --name NAME-VIRTUAL-ENVIROMENT python=3
-```
-
 ## Installation 🔧
 
-#### Install all project dependencies
-
 ```
+# Create virtual environment with Anaconda (Recomended)
+conda create --name NAME-VIRTUAL-ENVIROMENT python=3
+
+# Fork or clone this respository
+git clone git@github.com:almendrasmaria/memo-test.git
+
+# Install all project dependencies
 pip install -r requirements.txt
 ```
+
+> Create virtual environment with [Anaconda](https://www.anaconda.com/download) (_Recomended_)
 
 ## Docker 🐳
 
 #### Create the containers (services) that are described in the docker-compose file.
 
+> [!IMPORTANT]
+> Before running the docker compose command you must define the environment variables in the .env file.
+
 ```
-docker compose up
+docker compose up -d
 ```
+
+<details>
+	<summary>Enviroment variables</summary>
+	
+- Data base MySQL:
+	```py
+	MYSQL_HOST= localhost
+    MYSQL_USER= root
+    MYSQL_PASSWORD= mysql
+    MYSQL_PORT= 3306
+    MYSQL_DB= userdb
+	```
+
+- JWT and Secret key:
+  ```py
+    JWT_SECRET='secret'
+    JWT_ALGORITHM='HS256'
+    SECRET_KEY='secret_key'
+  ```
+- Admin:
+  ```py
+   # User Admin
+   ADMIN_EMAIL="admin@gmail.com"
+   ADMIN_PASSWORD="admin"
+  ```
+  </details>
 
 ## Start app 🚀
 
@@ -50,7 +92,21 @@ python app.py
 
 ## Documentation
 
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [SQLAlchemy](https://www.sqlalchemy.org/)
-- [Anaconda](https://docs.anaconda.com/free/anaconda/configurations/switch-environment/)
-- [Uvicorn](https://www.uvicorn.org/)
+- [![FastAPI][fastapi-badge]][fastapi-url]
+- [![SQLAlchemy][sqlalchemy-badge]][sqlalchemy-url]
+- [![Anaconda][anaconda-badge]][anaconda-url]
+- [![Docker][docker-badge]][docker-url]
+- [![Uvicorn][uvicorn-badge]][uvicorn-url]
+
+<!-- Variables -->
+
+[fastapi-badge]: https://img.shields.io/badge/fastapi-000?style=for-the-badge&logo=fastapi
+[fastapi-url]: https://fastapi.tiangolo.com/
+[sqlalchemy-badge]: https://img.shields.io/badge/sqlalchemy-000?style=for-the-badge&logo=sqlalchemy
+[sqlalchemy-url]: https://www.sqlalchemy.org/
+[anaconda-badge]: https://img.shields.io/badge/anaconda-000?style=for-the-badge&logo=anaconda
+[anaconda-url]: https://docs.anaconda.com/free/anaconda/configurations/switch-environment/
+[docker-badge]: https://img.shields.io/badge/docker-000?style=for-the-badge&logo=docker
+[docker-url]: https://docs.docker.com/
+[uvicorn-badge]: https://img.shields.io/badge/uvicorn-000?style=for-the-badge&logo=uvicorn
+[uvicorn-url]: https://www.uvicorn.org/
