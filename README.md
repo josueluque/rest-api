@@ -37,17 +37,14 @@ create database restapidb;
 conda create --name NAME-VIRTUAL-ENVIROMENT python=3
 
 # Fork or clone this respository
-git clone git@github.com:almendrasmaria/memo-test.git
+git clone https://github.com/josueluque/rest-api.git
 
 # Install all project dependencies
 pip install -r requirements.txt
 ```
 
-> Create virtual environment with [Anaconda](https://www.anaconda.com/download) (_Recomended_)
-
 ## Docker 🐳
 
-#### Create the containers (services) that are described in the docker-compose file.
 
 > [!IMPORTANT]
 > Before running the docker compose command you must define the environment variables in the .env file.
