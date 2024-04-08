@@ -1,5 +1,6 @@
 cryptography==41.0.7
 fastapi==0.110.1
+invoke==2.2.0
 pydantic==2.6.4
 pydantic_settings==2.2.1
 PyJWT==2.8.0
