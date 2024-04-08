@@ -33,51 +33,26 @@ create database restapidb;
 ## Installation 🔧
 
 ```
-# Create virtual environment with Anaconda (Recomended)
+# (RECOMMENDED) Create virtual environment with Anaconda 
 conda create --name NAME-VIRTUAL-ENVIROMENT python=3
 
 # Fork or clone this respository
 git clone https://github.com/josueluque/rest-api.git
 
 # Install all project dependencies
+cd rest-api
 pip install -r requirements.txt
 ```
 
 ## Docker 🐳
-
-
 > [!IMPORTANT]
-> Before running the docker compose command you must define the environment variables in the .env file.
-
+> Before executing the `docker compose` command run the `invoke generate-env` command to generate the env file
 ```
+cd rest-api
+invoke generate-env
+
 docker compose up -d
 ```
-
-<details>
-	<summary>Enviroment variables</summary>
-	
-- MySQL Database:
-	```py
-	MYSQL_HOST= localhost
-    MYSQL_USER= root
-    MYSQL_PASSWORD= mysql
-    MYSQL_PORT= 3306
-    MYSQL_DB= userdb
-	```
-
-- JWT and Secret key:
-  ```py
-    JWT_SECRET='secret'
-    JWT_ALGORITHM='HS256'
-    SECRET_KEY='secret_key'
-  ```
-- Admin:
-  ```py
-   # User Admin
-   ADMIN_EMAIL="admin@gmail.com"
-   ADMIN_PASSWORD="admin"
-  ```
-  </details>
 
 ## Start app 🚀
 
